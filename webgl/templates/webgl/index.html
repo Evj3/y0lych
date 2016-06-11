@@ -14,38 +14,47 @@
 
         <script id="shader-fs" type="x-shader/x-fragment">
             precision mediump float;
+
+            varying vec4 vColor;
+
             void main(void) {
-                gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+                gl_FragColor = vColor;
             }
         </script>
 
         <script id="shader-vs" type="x-shader/x-vertex">
         attribute vec3 aVertexPosition;
+        attribute vec4 aVertexColor;
+
         uniform mat4 uMVMatrix;
         uniform mat4 uPMatrix;
+
+        varying vec4 vColor;
+
         void main(void) {
             gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+            vColor = aVertexColor;
         }
         </script>
     </head>
 
-    <body onload="webGLStart();">
+    <body onload="webGLStart()";>
         <div class = "page-header">
             <h1 align = center><a href="https://dota4.biz">WebGL demo</a></h1>
         </div>
-        <div align="center">
+        <div >
             <p align="center">Triangle and Square why not</p>
             <canvas id="lesson01-canvas" style="border: none;" width="500" height="500"></canvas>
         </div>
 
-<div class="post" align= "center">$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░░░░░░░▄▀▄░░░░░░░░░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$
+<div class="content">$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░░░░░░░▄▀▄░░░░░░░░░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$
 ░░░░░░░░░░░░░▄▀░░░▀▄░░░░░░░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$
 ░░░░░░░░░░░▄▀░░░░▄▀█░░░░░░░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░▄▀░░░░▄▀░▄▀░▄▀▄░░░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░▄▀░░░░▄▀░▄▀░▄▀░░░▀▄░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░█▀▄░░░░▀█░▄▀░░░░░░░▀▄░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$
 ░░░▄▀▄░▀▄░▀▄░░░░▀░░░░▄█▄░░░░▀▄░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░▄▀░░░▀▄░▀▄░▀▄░░░░░▄▀░█░▀▄░░░░▀▄░</br>$data$data$data$data$data$$data$data$data$data$data$ ░█▀▄░░░░▀▄░█▀░░░░░░░▀█░▀▄░▀▄░▄▀█░</br>$data$data$data$data$data$$data$data$data$data$data$ ░▀▄░▀▄░░░░▀░░░░▄█▄░░░░▀▄░▀▄░█░▄▀░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░▀▄░▀▄░░░░░▄▀░█░▀▄░░░░▀▄░▀█▀░░░</br>$data$data$data$data$data$$data$data$data$data$data$
 ░░░░░▀▄░▀▄░▄▀░▄▀░█▀░░░░▄▀█░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░▀▄░█░▄▀░▄▀░░░░▄▀░▄▀░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░▀█▀░▄▀░░░░▄▀░▄▀░░░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░░░░░█▀▄░▄▀░▄▀░░░░░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░░░░░▀▄░█░▄▀░░░░░░░░░░░░░
 </div>
 
-<div class= "post" align="center">
+<div class= "content">
     <p>$POWERED_BY$? - uCoz</p>
 </div>
 
