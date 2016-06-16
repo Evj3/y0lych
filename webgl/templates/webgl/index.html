@@ -10,6 +10,7 @@
         <title>CS:S</title>
 
         <script src="{% static 'webgl/js/glMatrix-0.9.5.min.js'%}"></script>
+        <script type="text/javascript" src="{% static 'webgl/js/webgl-utils.js' %}"></script>
         <script src="{% static 'webgl/js/triangle.js'%}"></script>
 
         <script id="shader-fs" type="x-shader/x-fragment">
@@ -45,6 +46,8 @@
         <div >
             <p align="center">Triangle and Square why not</p>
             <canvas id="lesson01-canvas" style="border: none;" width="500" height="500"></canvas>
+            <input value="Нажми меня" onclick="changeMatrix()" type="button">
+            <input value="Нажми меня 2" onclick="changeMatrix()" type="button">
         </div>
 
 <div class="content">$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░░░░░░░▄▀▄░░░░░░░░░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$
