@@ -122,10 +122,10 @@
         squareVertexPositionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
         vertices = [
-             1.0,  1.0,  -3.0,
-            -1.0,  1.25,  -3.0,
-             1.0, -1.0,  -3.0,
-            -1.3, -1.0,  -3.0
+             1.0,  1.0,  0.0,
+            -1.0,  1.0,  0.0,
+             1.0, -1.0,  0.0,
+            -1.0, -1.0,  0.0
         ];
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
         squareVertexPositionBuffer.itemSize = 3;
@@ -195,7 +195,7 @@
     }
 
     function tick() {
-        requestAnimFrame(tick);
+        //requestAnimFrame(tick);
         drawScene();
         animate();
     }
@@ -206,7 +206,8 @@
         initBuffers();
         gl.clearColor(0.0, 0.0, 0.0, 1.0);
         gl.enable(gl.DEPTH_TEST);
-        tick();
+        //tick();
+        drawScene();
     }
 
     function changeMatrix() {
