@@ -144,7 +144,7 @@
 
     var rTri = 0;
     var rSquare = 0;
-    function drawScene() {
+    function drawScene(x, y, z) {
         gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
@@ -152,7 +152,7 @@
         mat4.translate(mvMatrix, [-1.5, 0.0, -7.0]);
 
         mvPushMatrix();
-        mat4.rotate(mvMatrix, degToRad(rTri), [0, 1, 0]);
+        mat4.rotate(mvMatrix, degToRad(rTri), [x, y, z]);
 
         gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -168,7 +168,7 @@
         mat4.translate(mvMatrix, [3.0, 0.0, 0.0]);
 
         mvPushMatrix();
-        mat4.rotate(mvMatrix, degToRad(rSquare), [1, 0, 0]);
+        mat4.rotate(mvMatrix, degToRad(rSquare), [x, y, z]);
 
         gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, squareVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -194,11 +194,12 @@
         lastTime = timeNow;
     }
 
-    function tick() {
+    function tick(x, y, z) {
         //requestAnimFrame(tick);
-        drawScene();
+        drawScene(x, y, z);
         animate();
     }
+
                 function webGLStart() {
         var canvas = document.getElementById("lesson01-canvas");
         initGL(canvas);
