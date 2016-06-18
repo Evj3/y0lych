@@ -11,7 +11,7 @@
 
         <script src="{% static 'webgl/js/glMatrix-0.9.5.min.js'%}"></script>
         <script type="text/javascript" src="{% static 'webgl/js/webgl-utils.js' %}"></script>
-        <script src="{% static 'webgl/js/triangle.js'%}"></script>
+        <script src="{% static 'webgl/js/engine.js'%}"></script>
 
         <script id="shader-fs" type="x-shader/x-fragment">
             precision mediump float;
@@ -50,11 +50,28 @@
             <input value="Right" onclick="tick(0, -1, 0)" type="button">
         </div>
 
-<div class="content">$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░░░░░░░▄▀▄░░░░░░░░░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$
-░░░░░░░░░░░░░▄▀░░░▀▄░░░░░░░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$
-░░░░░░░░░░░▄▀░░░░▄▀█░░░░░░░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░▄▀░░░░▄▀░▄▀░▄▀▄░░░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░▄▀░░░░▄▀░▄▀░▄▀░░░▀▄░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░█▀▄░░░░▀█░▄▀░░░░░░░▀▄░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$
-░░░▄▀▄░▀▄░▀▄░░░░▀░░░░▄█▄░░░░▀▄░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░▄▀░░░▀▄░▀▄░▀▄░░░░░▄▀░█░▀▄░░░░▀▄░</br>$data$data$data$data$data$$data$data$data$data$data$ ░█▀▄░░░░▀▄░█▀░░░░░░░▀█░▀▄░▀▄░▄▀█░</br>$data$data$data$data$data$$data$data$data$data$data$ ░▀▄░▀▄░░░░▀░░░░▄█▄░░░░▀▄░▀▄░█░▄▀░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░▀▄░▀▄░░░░░▄▀░█░▀▄░░░░▀▄░▀█▀░░░</br>$data$data$data$data$data$$data$data$data$data$data$
-░░░░░▀▄░▀▄░▄▀░▄▀░█▀░░░░▄▀█░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░▀▄░█░▄▀░▄▀░░░░▄▀░▄▀░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░▀█▀░▄▀░░░░▄▀░▄▀░░░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░░░░░█▀▄░▄▀░▄▀░░░░░░░░░░░</br>$data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░░░░░▀▄░█░▄▀░░░░░░░░░░░░░
+<div class="content">
+    $data$data$data$data$data$$data$data$data$data$data$
+                                                         ░░░░░░░░░░░░░░░▄▀▄░░░░░░░░░░░░░░░</br>
+    $data$data$data$data$data$$data$data$data$data$data$
+                                                         ░░░░░░░░░░░░░▄▀░░░▀▄░░░░░░░░░░░░░</br>
+    $data$data$data$data$data$$data$data$data$data$data$
+                                                         ░░░░░░░░░░░▄▀░░░░▄▀█░░░░░░░░░░░░░</br>
+    $data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░▄▀░░░░▄▀░▄▀░▄▀▄░░░░░░░░░</br>
+    $data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░▄▀░░░░▄▀░▄▀░▄▀░░░▀▄░░░░░░░</br>
+    $data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░█▀▄░░░░▀█░▄▀░░░░░░░▀▄░░░░░</br>
+    $data$data$data$data$data$$data$data$data$data$data$
+                                                         ░░░▄▀▄░▀▄░▀▄░░░░▀░░░░▄█▄░░░░▀▄░░░</br>
+    $data$data$data$data$data$$data$data$data$data$data$ ░▄▀░░░▀▄░▀▄░▀▄░░░░░▄▀░█░▀▄░░░░▀▄░</br>
+    $data$data$data$data$data$$data$data$data$data$data$ ░█▀▄░░░░▀▄░█▀░░░░░░░▀█░▀▄░▀▄░▄▀█░</br>
+    $data$data$data$data$data$$data$data$data$data$data$ ░▀▄░▀▄░░░░▀░░░░▄█▄░░░░▀▄░▀▄░█░▄▀░</br>
+    $data$data$data$data$data$$data$data$data$data$data$ ░░░▀▄░▀▄░░░░░▄▀░█░▀▄░░░░▀▄░▀█▀░░░</br>
+    $data$data$data$data$data$$data$data$data$data$data$
+                                                         ░░░░░▀▄░▀▄░▄▀░▄▀░█▀░░░░▄▀█░░░░░░░</br>
+    $data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░▀▄░█░▄▀░▄▀░░░░▄▀░▄▀░░░░░░░</br>
+    $data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░▀█▀░▄▀░░░░▄▀░▄▀░░░░░░░░░</br>
+    $data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░░░░░█▀▄░▄▀░▄▀░░░░░░░░░░░</br>
+    $data$data$data$data$data$$data$data$data$data$data$ ░░░░░░░░░░░░░▀▄░█░▄▀░░░░░░░░░░░░░
 </div>
 
 <div class= "content">
