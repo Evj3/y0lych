@@ -273,4 +273,8 @@
     function changeMatrix() {
         alert("test message");
     }
+
+document.addEventListener('keydown', function(e) {
+	 alert("Вы чето нажали.");
+});
     
