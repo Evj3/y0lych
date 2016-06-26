@@ -215,14 +215,14 @@
     }
     var rPyramid = 0;
     var rCube = 0;
-    function drawScene() {
+    function drawScene(x, y, z) {
         gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
         mat4.identity(mvMatrix);
         mat4.translate(mvMatrix, [-1.5, 0.0, -8.0]);
         mvPushMatrix();
-        mat4.rotate(mvMatrix, degToRad(rPyramid), [0, 1, 0]);
+        mat4.rotate(mvMatrix, degToRad(rPyramid), [x, -y, z]);
         gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexPositionBuffer);
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, pyramidVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
         gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexColorBuffer);
@@ -232,7 +232,7 @@
         mvPopMatrix();
         mat4.translate(mvMatrix, [3.0, 0.0, 0.0]);
         mvPushMatrix();
-        mat4.rotate(mvMatrix, degToRad(rCube), [1, 1, 1]);
+        mat4.rotate(mvMatrix, degToRad(rCube), [x, y, z]);
         gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexPositionBuffer);
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, cubeVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
         gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexColorBuffer);
@@ -275,6 +275,19 @@
     }
 
 document.addEventListener('keydown', function(e) {
-	 alert("Полиция Маями! Уведомляем, что с Вашего IP-Address была замечена активность на сайтах gay-porno. Никаких штрафов пока. Впредь будьте осторожнее.");
+	 if (e.keyCode == 37) {
+         tick(0, 1, 0);
+     } else if (e.keyCode == 39) {
+         tick(0, -1, 0);
+     }
+       else if (e.keyCode == 38) {
+         tick(1, 0, 0);
+     }
+       else if (e.keyCode == 40) {
+         tick(-1, 0, 0);
+     }
+     else {
+         alert("Полиция Маями! Уведомляем, что с Вашего IP-Address была замечена активность на сайтах gay-porno. Никаких штрафов пока. Впредь будьте осторожнее.");
+     }
 });
     
