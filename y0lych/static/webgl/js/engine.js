@@ -90,58 +90,10 @@
         gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
         gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
     }
-    var pyramidVertexPositionBuffer;
-    var pyramidVertexColorBuffer;
     var cubeVertexPositionBuffer;
     var cubeVertexColorBuffer;
     var cubeVertexIndexBuffer;
     function initBuffers() {
-        pyramidVertexPositionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexPositionBuffer);
-        var vertices = [
-            // Front face
-             0.0,  1.0,  0.0,
-            -1.0, -1.0,  1.0,
-             1.0, -1.0,  1.0,
-            // Right face
-             0.0,  1.0,  0.0,
-             1.0, -1.0,  1.0,
-             1.0, -1.0, -1.0,
-            // Back face
-             0.0,  1.0,  0.0,
-             1.0, -1.0, -1.0,
-            -1.0, -1.0, -1.0,
-            // Left face
-             0.0,  1.0,  0.0,
-            -1.0, -1.0, -1.0,
-            -1.0, -1.0,  1.0
-        ];
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-        pyramidVertexPositionBuffer.itemSize = 3;
-        pyramidVertexPositionBuffer.numItems = 12;
-        pyramidVertexColorBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexColorBuffer);
-        var colors = [
-            // Front face
-            1.0, 0.0, 0.0, 1.0,
-            0.0, 1.0, 0.0, 1.0,
-            0.0, 0.0, 1.0, 1.0,
-            // Right face
-            1.0, 0.0, 0.0, 1.0,
-            0.0, 0.0, 1.0, 1.0,
-            0.0, 1.0, 0.0, 1.0,
-            // Back face
-            1.0, 0.0, 0.0, 1.0,
-            0.0, 1.0, 0.0, 1.0,
-            0.0, 0.0, 1.0, 1.0,
-            // Left face
-            1.0, 0.0, 0.0, 1.0,
-            0.0, 0.0, 1.0, 1.0,
-            0.0, 1.0, 0.0, 1.0
-        ];
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
-        pyramidVertexColorBuffer.itemSize = 4;
-        pyramidVertexColorBuffer.numItems = 12;
         cubeVertexPositionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexPositionBuffer);
         vertices = [
@@ -213,7 +165,6 @@
         cubeVertexIndexBuffer.itemSize = 1;
         cubeVertexIndexBuffer.numItems = 36;
     }
-    var rPyramid = 0;
     var rCube = 0;
     function drawScene(x, y, z) {
         gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
@@ -221,15 +172,6 @@
         mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
         mat4.identity(mvMatrix);
         mat4.translate(mvMatrix, [-1.5, 0.0, -8.0]);
-        mvPushMatrix();
-        mat4.rotate(mvMatrix, degToRad(rPyramid), [x, -y, z]);
-        gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, pyramidVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexColorBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, pyramidVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, pyramidVertexPositionBuffer.numItems);
-        mvPopMatrix();
         mat4.translate(mvMatrix, [3.0, 0.0, 0.0]);
         mvPushMatrix();
         mat4.rotate(mvMatrix, degToRad(rCube), [x, y, z]);
@@ -247,8 +189,7 @@
         var timeNow = new Date().getTime();
         if (lastTime != 0) {
             var elapsed = timeNow - lastTime;
-            rPyramid += (90 * elapsed) / 1000.0;
-            rCube -= (75 * elapsed) / 1000.0;
+            rCube -= (30 * elapsed) / 1000.0;
         }
         lastTime = timeNow;
     }
@@ -286,7 +227,7 @@ document.addEventListener('keydown', function(e) {
        else if (e.keyCode == 40) {
          tick(-1, 0, 0);
      }
-     else {
+       else {
          alert("Полиция Маями! Уведомляем, что с Вашего IP-Address была замечена активность на сайтах gay-porno. Никаких штрафов пока. Впредь будьте осторожнее.");
      }
 });
