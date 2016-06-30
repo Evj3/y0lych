@@ -167,8 +167,8 @@
     }
     var rCube = 0;
     var rotMatrix;
-            rotMatrix = mat4.create();
-        mat4.identity(rotMatrix);
+    rotMatrix = mat4.create();
+    mat4.identity(rotMatrix);
     function drawScene(x, y, z) {
 
         gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);

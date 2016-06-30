@@ -166,9 +166,11 @@
         cubeVertexIndexBuffer.numItems = 36;
     }
     var rCube = 0;
-    var rotMatrix = mat4.create();
+    var rotMatrix;
+    rotMatrix = mat4.create();
     mat4.identity(rotMatrix);
     function drawScene(x, y, z) {
+
         gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
@@ -191,7 +193,7 @@
         var timeNow = new Date().getTime();
         if (lastTime != 0) {
             var elapsed = timeNow - lastTime;
-            rCube -= (5 * elapsed) / 1000.0;
+            rCube = (30 * elapsed) / 1000.0;
         }
         lastTime = timeNow;
     }
